@@ -15,7 +15,7 @@ texture = ExtResource( 1 )
 [node name="InputUI" type="Node2D" parent="."]
 position = Vector2( 600, 150 )
 
-[node name="Label" type="Label" parent="InputUI"]
+[node name="DisplayedNum" type="Label" parent="InputUI"]
 margin_top = -50.0
 margin_right = 125.0
 margin_bottom = -36.0
@@ -118,6 +118,17 @@ margin_right = 308.0
 margin_bottom = 412.0
 rect_min_size = Vector2( 100, 100 )
 text = "Enter"
+
+[node name="Timer" type="Label" parent="."]
+margin_left = 512.0
+margin_top = 20.0
+margin_right = 552.0
+margin_bottom = 34.0
+rect_scale = Vector2( 2.5, 2.5 )
+rect_pivot_offset = Vector2( 20, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00"
+align = 1
 
 [connection signal="button_down" from="InputUI/InputButtons/Button1" to="." method="_on_Button_button_down" binds= [ "Button1" ]]
 [connection signal="button_down" from="InputUI/InputButtons/Button2" to="." method="_on_Button_button_down" binds= [ "Button2" ]]
