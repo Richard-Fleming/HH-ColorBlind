@@ -45,41 +45,42 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if sequenceIterator > 5 && !endTest:
-		gameplayControl.visible = false
-		gameplayControl.set_process(false)
-		endUI.visible = true
-		endUI.get_node("DisplayedVerdict").text = "Verdict: " + String(verdict) + "/6"
-		endUI.get_node("RestartButton").set_process(true)
-		endUI.get_node("MenuReturn").set_process(true)
-		for i in rightWrong.size():
-			if rightWrong[i] == 1:
-				finalPlates.get_child(i).get_node("RightWrong").set_texture(rightText)
-			else:
-				finalPlates.get_child(i).get_node("RightWrong").set_texture(wrongText)
-		endTest = true
-	if answered == true && sequenceIterator < 6:
-		answered = false
-		match sequence[sequenceIterator]:
-			"Blind 45":
-				numPlate.set_texture(blindPlateTex)
-			"5":
-				numPlate.set_texture(fivePlateTex)
-			"6":
-				numPlate.set_texture(sixPlateTex)
-			"7":
-				numPlate.set_texture(sevenPlateTex)
-			"15":
-				numPlate.set_texture(fifteenPlateTex)
-			"26":
-				numPlate.set_texture(twentySixPlateTex)
-
-	timer -= delta
-	if timer <= 0 && sequenceIterator < 6:
-		answered = true
-		_check_answer()
-		_next_in_sequence()
-	displayedTimer.text =  String("%.2f" % timer)
+	if gameplayControl.is_processing():
+		if sequenceIterator > 5 && !endTest:
+			gameplayControl.visible = false
+			gameplayControl.set_process(false)
+			endUI.visible = true
+			endUI.get_node("DisplayedVerdict").text = "Verdict: " + String(verdict) + "/6"
+			endUI.get_node("RestartButton").set_process(true)
+			endUI.get_node("MenuReturn").set_process(true)
+			for i in rightWrong.size():
+				if rightWrong[i] == 1:
+					finalPlates.get_child(i).get_node("RightWrong").set_texture(rightText)
+				else:
+					finalPlates.get_child(i).get_node("RightWrong").set_texture(wrongText)
+			endTest = true
+		if answered == true && sequenceIterator < 6:
+			answered = false
+			match sequence[sequenceIterator]:
+				"Blind 45":
+					numPlate.set_texture(blindPlateTex)
+				"5":
+					numPlate.set_texture(fivePlateTex)
+				"6":
+					numPlate.set_texture(sixPlateTex)
+				"7":
+					numPlate.set_texture(sevenPlateTex)
+				"15":
+					numPlate.set_texture(fifteenPlateTex)
+				"26":
+					numPlate.set_texture(twentySixPlateTex)
+			
+		timer -= delta
+		if timer <= 0 && sequenceIterator < 6:
+			answered = true
+			_check_answer()
+			_next_in_sequence()
+		displayedTimer.text =  String("%.2f" % timer)
 
 
 func _next_in_sequence():
@@ -197,3 +198,5 @@ func _on_MenuReturn_button_down():
 	endUI.visible = false
 	endUI.get_node("RestartButton").set_process(false)
 	endUI.get_node("MenuReturn").set_process(false)
+	gameplayControl.visible = false
+	gameplayControl.set_process(false)
