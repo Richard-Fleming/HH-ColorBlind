@@ -1,26 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/5_Plate.png" type="Texture" id=1]
 [ext_resource path="res://Themes/Main.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=3]
-
-[sub_resource type="Theme" id=1]
-Label/colors/font_color = Color( 0, 0, 0, 1 )
+[ext_resource path="res://Sprites/Tick.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Blind_Plate.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/7_Plate.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/6_Plate.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/15_Plate.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/26_Plate.png" type="Texture" id=9]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="Plate" type="Sprite" parent="."]
-visible = false
+[node name="Gameplay" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Plate" type="Sprite" parent="Gameplay"]
 position = Vector2( 250, 300 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
-[node name="InputUI" type="Node2D" parent="."]
-visible = false
-position = Vector2( 600, 150 )
+[node name="InputUI" type="Node2D" parent="Gameplay"]
+position = Vector2( 600, 117 )
 
-[node name="DisplayedNum" type="Label" parent="InputUI"]
+[node name="DisplayedNum" type="Label" parent="Gameplay/InputUI"]
 margin_top = -50.0
 margin_right = 125.0
 margin_bottom = -36.0
@@ -28,41 +33,41 @@ rect_scale = Vector2( 2.5, 2.5 )
 theme = ExtResource( 2 )
 align = 2
 
-[node name="InputButtons" type="GridContainer" parent="InputUI"]
+[node name="InputButtons" type="GridContainer" parent="Gameplay/InputUI"]
 margin_right = 308.0
 margin_bottom = 412.0
 rect_min_size = Vector2( 300, 300 )
 theme = ExtResource( 2 )
 columns = 3
 
-[node name="Button1" type="Button" parent="InputUI/InputButtons"]
+[node name="Button1" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 text = "1"
 
-[node name="Button2" type="Button" parent="InputUI/InputButtons"]
+[node name="Button2" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 104.0
 margin_right = 204.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 text = "2"
 
-[node name="Button3" type="Button" parent="InputUI/InputButtons"]
+[node name="Button3" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 208.0
 margin_right = 308.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 text = "3"
 
-[node name="Button4" type="Button" parent="InputUI/InputButtons"]
+[node name="Button4" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_top = 104.0
 margin_right = 100.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 100, 100 )
 text = "4"
 
-[node name="Button5" type="Button" parent="InputUI/InputButtons"]
+[node name="Button5" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 104.0
 margin_top = 104.0
 margin_right = 204.0
@@ -70,7 +75,7 @@ margin_bottom = 204.0
 rect_min_size = Vector2( 100, 100 )
 text = "5"
 
-[node name="Button6" type="Button" parent="InputUI/InputButtons"]
+[node name="Button6" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 208.0
 margin_top = 104.0
 margin_right = 308.0
@@ -78,14 +83,14 @@ margin_bottom = 204.0
 rect_min_size = Vector2( 100, 100 )
 text = "6"
 
-[node name="Button7" type="Button" parent="InputUI/InputButtons"]
+[node name="Button7" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_top = 208.0
 margin_right = 100.0
 margin_bottom = 308.0
 rect_min_size = Vector2( 100, 100 )
 text = "7"
 
-[node name="Button8" type="Button" parent="InputUI/InputButtons"]
+[node name="Button8" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 104.0
 margin_top = 208.0
 margin_right = 204.0
@@ -93,7 +98,7 @@ margin_bottom = 308.0
 rect_min_size = Vector2( 100, 100 )
 text = "8"
 
-[node name="Button9" type="Button" parent="InputUI/InputButtons"]
+[node name="Button9" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 208.0
 margin_top = 208.0
 margin_right = 308.0
@@ -101,14 +106,14 @@ margin_bottom = 308.0
 rect_min_size = Vector2( 100, 100 )
 text = "9"
 
-[node name="BackButton" type="Button" parent="InputUI/InputButtons"]
+[node name="BackButton" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_top = 312.0
 margin_right = 100.0
 margin_bottom = 412.0
 rect_min_size = Vector2( 100, 100 )
 text = "Back"
 
-[node name="Button0" type="Button" parent="InputUI/InputButtons"]
+[node name="Button0" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 104.0
 margin_top = 312.0
 margin_right = 204.0
@@ -116,7 +121,7 @@ margin_bottom = 412.0
 rect_min_size = Vector2( 100, 100 )
 text = "0"
 
-[node name="EnterButton" type="Button" parent="InputUI/InputButtons"]
+[node name="EnterButton" type="Button" parent="Gameplay/InputUI/InputButtons"]
 margin_left = 208.0
 margin_top = 312.0
 margin_right = 308.0
@@ -124,68 +129,134 @@ margin_bottom = 412.0
 rect_min_size = Vector2( 100, 100 )
 text = "Enter"
 
-[node name="Timer" type="Label" parent="."]
-visible = false
-margin_left = 512.0
+[node name="PassButton" type="Button" parent="Gameplay"]
+margin_left = 600.0
+margin_top = 533.0
+margin_right = 910.0
+margin_bottom = 583.0
+theme = ExtResource( 2 )
+text = "Pass"
+
+[node name="Timer" type="Label" parent="Gameplay"]
+margin_left = 474.0
 margin_top = 20.0
-margin_right = 552.0
-margin_bottom = 34.0
+margin_right = 514.0
+margin_bottom = 40.0
 rect_scale = Vector2( 2.5, 2.5 )
 rect_pivot_offset = Vector2( 20, 0 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "00:00"
+theme = ExtResource( 2 )
+text = "00.00"
 align = 1
 
-[node name="EndUI" type="Node2D" parent="."]
+[node name="EndUI" type="Control" parent="."]
 visible = false
+theme = ExtResource( 2 )
 
 [node name="DisplayedVerdict" type="Label" parent="EndUI"]
 margin_left = 424.0
-margin_top = 272.0
-margin_right = 498.0
-margin_bottom = 286.0
+margin_top = 262.0
+margin_right = 502.0
+margin_bottom = 280.0
 rect_scale = Vector2( 2.5, 2.5 )
-theme = SubResource( 1 )
 text = "Verdict: 0/6"
 
 [node name="RestartButton" type="Button" parent="EndUI"]
-margin_left = 448.0
+margin_left = 438.0
 margin_top = 312.0
-margin_right = 505.0
-margin_bottom = 332.0
-rect_scale = Vector2( 2.5, 2.5 )
+margin_right = 546.0
+margin_bottom = 362.0
+rect_scale = Vector2( 1.5, 1.5 )
 text = "Restart"
 
 [node name="MenuReturn" type="Button" parent="EndUI"]
-margin_left = 416.0
-margin_top = 384.0
-margin_right = 499.0
-margin_bottom = 404.0
-rect_scale = Vector2( 2.5, 2.5 )
+margin_left = 420.0
+margin_top = 397.0
+margin_right = 554.0
+margin_bottom = 447.0
+rect_scale = Vector2( 1.5, 1.5 )
 text = "Main Menu"
 
-[node name="MainMenu" type="Node2D" parent="."]
+[node name="FinalPlates" type="Node2D" parent="EndUI"]
+
+[node name="PlateBlind" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 885, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/PlateBlind"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="Plate5" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 135, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/Plate5"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="Plate6" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 285, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 7 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/Plate6"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="Plate7" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 435, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/Plate7"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="Plate15" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 585, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/Plate15"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="Plate26" type="Sprite" parent="EndUI/FinalPlates"]
+position = Vector2( 735, 150 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
+
+[node name="RightWrong" type="Sprite" parent="EndUI/FinalPlates/Plate26"]
+position = Vector2( 290, -255 )
+texture = ExtResource( 4 )
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+theme = ExtResource( 2 )
 
 [node name="StartButton" type="Button" parent="MainMenu"]
-margin_left = 432.0
-margin_top = 264.0
-margin_right = 504.0
-margin_bottom = 284.0
+margin_left = 364.0
+margin_top = 260.0
+margin_right = 502.0
+margin_bottom = 310.0
 rect_scale = Vector2( 2.5, 2.5 )
 text = "Start Test"
 
-[connection signal="button_down" from="InputUI/InputButtons/Button1" to="." method="_on_Button_button_down" binds= [ "Button1" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button2" to="." method="_on_Button_button_down" binds= [ "Button2" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button3" to="." method="_on_Button_button_down" binds= [ "Button3" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button4" to="." method="_on_Button_button_down" binds= [ "Button4" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button5" to="." method="_on_Button_button_down" binds= [ "Button5" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button6" to="." method="_on_Button_button_down" binds= [ "Button6" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button7" to="." method="_on_Button_button_down" binds= [ "Button7" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button8" to="." method="_on_Button_button_down" binds= [ "Button8" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button9" to="." method="_on_Button_button_down" binds= [ "Button9" ]]
-[connection signal="button_down" from="InputUI/InputButtons/BackButton" to="." method="_on_Button_button_down" binds= [ "BackButton" ]]
-[connection signal="button_down" from="InputUI/InputButtons/Button0" to="." method="_on_Button_button_down" binds= [ "Button0" ]]
-[connection signal="button_down" from="InputUI/InputButtons/EnterButton" to="." method="_on_Button_button_down" binds= [ "EnterButton" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button1" to="." method="_on_Button_button_down" binds= [ "Button1" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button2" to="." method="_on_Button_button_down" binds= [ "Button2" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button3" to="." method="_on_Button_button_down" binds= [ "Button3" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button4" to="." method="_on_Button_button_down" binds= [ "Button4" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button5" to="." method="_on_Button_button_down" binds= [ "Button5" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button6" to="." method="_on_Button_button_down" binds= [ "Button6" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button7" to="." method="_on_Button_button_down" binds= [ "Button7" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button8" to="." method="_on_Button_button_down" binds= [ "Button8" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button9" to="." method="_on_Button_button_down" binds= [ "Button9" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/BackButton" to="." method="_on_Button_button_down" binds= [ "BackButton" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/Button0" to="." method="_on_Button_button_down" binds= [ "Button0" ]]
+[connection signal="button_down" from="Gameplay/InputUI/InputButtons/EnterButton" to="." method="_on_Button_button_down" binds= [ "EnterButton" ]]
+[connection signal="button_down" from="Gameplay/PassButton" to="." method="_on_Button_button_down" binds= [ "PassButton" ]]
 [connection signal="button_down" from="EndUI/RestartButton" to="." method="_on_Restart_button_down"]
 [connection signal="button_down" from="EndUI/MenuReturn" to="." method="_on_MenuReturn_button_down"]
 [connection signal="button_down" from="MainMenu/StartButton" to="." method="_on_Start_button_down"]
