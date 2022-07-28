@@ -18,6 +18,7 @@ var displayedTimer
 var inputUIGroup
 var endUI
 var menuUI
+var tutorialScreen
 var gameplayControl
 var finalPlates
 var verdict = 0
@@ -30,16 +31,19 @@ var endTest = false
 func _ready():
 	gameplayControl = get_node("Gameplay")
 	gameplayControl.visible = false
+	gameplayControl.set_process(false)
 	inputUIGroup = get_node("Gameplay/InputUI")
 	numPlate = get_node("Gameplay/Plate")
 	displayedNum = get_node("Gameplay/InputUI/DisplayedNum")
 	displayedTimer = get_node("Gameplay/Timer")
 	endUI = get_node("EndUI")
 	endUI.visible = false
-	endUI.get_node("RestartButton").set_process(false)
-	endUI.get_node("MenuReturn").set_process(false)
+	endUI.get_node("RestartButton").set_disabled(true)
+	endUI.get_node("MenuReturn").set_disabled(true)
 	menuUI = get_node("MainMenu")
 	menuUI.visible = true
+	tutorialScreen = get_node("TutorialScreen")
+	tutorialScreen.visible = false
 	finalPlates = get_node("EndUI/FinalPlates")
 
 
@@ -51,8 +55,8 @@ func _process(delta):
 			gameplayControl.set_process(false)
 			endUI.visible = true
 			endUI.get_node("DisplayedVerdict").text = "Verdict: " + String(verdict) + "/6"
-			endUI.get_node("RestartButton").set_process(true)
-			endUI.get_node("MenuReturn").set_process(true)
+			endUI.get_node("RestartButton").set_disabled(false)
+			endUI.get_node("MenuReturn").set_disabled(false)
 			for i in rightWrong.size():
 				if rightWrong[i] == 1:
 					finalPlates.get_child(i).get_node("RightWrong").set_texture(rightText)
@@ -160,8 +164,8 @@ func _on_Restart_button_down():
 	gameplayControl.visible = true
 	gameplayControl.set_process(true)
 	endUI.visible = false
-	endUI.get_node("RestartButton").set_process(false)
-	endUI.get_node("MenuReturn").set_process(false)
+	endUI.get_node("RestartButton").set_disabled(true)
+	endUI.get_node("MenuReturn").set_disabled(true)
 	currentNum = ""
 	verdict = 0
 	sequenceIterator = 0
@@ -187,16 +191,34 @@ func _on_Restart_button_down():
 
 
 func _on_Start_button_down():
-	menuUI.get_node("StartButton").set_process(false)
+	menuUI.get_node("StartButton").set_disabled(true)
+	menuUI.get_node("HelpButton").set_disabled(true)
 	menuUI.visible = false
 	_on_Restart_button_down()
 
 
 func _on_MenuReturn_button_down():
-	menuUI.get_node("StartButton").set_process(true)
+	menuUI.get_node("StartButton").set_disabled(false)
+	menuUI.get_node("HelpButton").set_disabled(false)
 	menuUI.visible = true
 	endUI.visible = false
-	endUI.get_node("RestartButton").set_process(false)
-	endUI.get_node("MenuReturn").set_process(false)
+	endUI.get_node("RestartButton").set_disabled(true)
+	endUI.get_node("MenuReturn").set_disabled(true)
 	gameplayControl.visible = false
 	gameplayControl.set_process(false)
+
+
+func _on_HelpButton_button_down():
+	menuUI.get_node("StartButton").set_disabled(true)
+	menuUI.get_node("HelpButton").set_disabled(true)
+	menuUI.visible = true
+	tutorialScreen.visible = true
+	tutorialScreen.get_node("ReturnButton").set_disabled(false)
+
+
+func _on_ReturnButton_button_down():
+	menuUI.get_node("StartButton").set_disabled(false)
+	menuUI.get_node("HelpButton").set_disabled(false)
+	menuUI.visible = true
+	tutorialScreen.visible = false
+	tutorialScreen.get_node("ReturnButton").set_disabled(true)
